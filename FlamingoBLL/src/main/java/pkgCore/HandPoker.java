@@ -24,18 +24,11 @@ public class HandPoker extends Hand {
 
 	@Override
 	public HandScore ScoreHand() {
-		// TODO : Implement this method... call each of the 'is' methods (isRoyalFlush,
-		// etc) until
-		// one of the hands is true, then score the hand
-
 		Collections.sort(super.getCards());
 		Frequency();
 
-		// HandScorePoker HS = new HandScorePoker();
+		
 		if (isRoyalFlush()) {
-			/*
-			 * HS.seteHandStrength(eHandStrength.RoyalFlush); super.setHS(HS); return HS;
-			 */
 		} else if (isStraightFlush()) {
 		} else if (isFourOfAKind()) {
 		} else if (isFullHouse()) {
@@ -52,7 +45,6 @@ public class HandPoker extends Hand {
 
 	public boolean isRoyalFlush() {
 		boolean bisRoyalFlush = false;
-		// TODO : Implement this method
 		if (isStraightFlush() && super.getCards().get(0).geteRank().getiRankNbr() == 14) {
 			HandScorePoker HSP = (HandScorePoker) this.getHS();
 			HSP.seteHandStrength(eHandStrength.RoyalFlush);
@@ -69,7 +61,6 @@ public class HandPoker extends Hand {
 
 	public boolean isStraightFlush() {
 		boolean bisStraightFlush = false;
-		// TODO : Implement this method
 		if (isFlush() && isStraight()) {
 			HandScorePoker HSP = (HandScorePoker) this.getHS();
 			HSP.seteHandStrength(eHandStrength.StraightFlush);
@@ -84,7 +75,6 @@ public class HandPoker extends Hand {
 		return bisStraightFlush;
 	}
 
-	// TODO : Implement this method
 	public boolean isFourOfAKind() {
 		boolean bisFourOfAKind = false;
 		if (this.getCRC().size() == 2) {
@@ -103,10 +93,8 @@ public class HandPoker extends Hand {
 		return bisFourOfAKind;
 	}
 
-	// TODO : Implement this method
 	public boolean isFullHouse() {
 		boolean bisFullHouse = false;
-
 		if (this.getCRC().size() == 2) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND
 					|| this.getCRC().get(0).getiCnt() == Constants.THREE_OF_A_KIND) {
@@ -160,7 +148,6 @@ public class HandPoker extends Hand {
 
 	public boolean isStraight() {
 		boolean bisStraight = false;
-		// TODO : Implement this method
 
 		int iCardCnt = super.getCards().size();
 		int consecutiveCards = 0;
@@ -175,6 +162,11 @@ public class HandPoker extends Hand {
 			lastRank = currentRank;
 		}
 
+		Boolean lowAceStraight = consecutiveCards == iCardCnt - 2 &&
+				super.getCards().get(0).geteRank().getiRankNbr() == 14 &&
+				super.getCards().get(4).geteRank().getiRankNbr() == 2 &&
+				super.getCards().get(3).geteRank().getiRankNbr() == 3;
+		
 		if (consecutiveCards == iCardCnt - 1) {
 			HandScorePoker HSP = (HandScorePoker) this.getHS();
 			HSP.seteHandStrength(eHandStrength.Straight);
@@ -185,13 +177,13 @@ public class HandPoker extends Hand {
 			this.setHS(HSP);
 			
 			bisStraight = true;
+		} else if (lowAceStraight) {
+			bisStraight = true;
 		}
 
 		return bisStraight;
 	}
 
-	// This is how to implement one of the 'counting' hand types. Testing to see if
-	// there are three of the same rank.
 	public boolean isThreeOfAKind() {
 		boolean bisThreeOfAKind = false;
 		if (this.getCRC().size() == 3) {
@@ -212,7 +204,6 @@ public class HandPoker extends Hand {
 
 	public boolean isTwoPair() {
 		boolean bisTwoPair = false;
-		// TODO : Implement this method
 		if (this.getCRC().size() == 3) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
@@ -231,7 +222,6 @@ public class HandPoker extends Hand {
 
 	public boolean isPair() {
 		boolean bisPair = false;
-		// TODO : Implement this method
 		if (this.getCRC().size() == 4) {
 			if (this.getCRC().get(0).getiCnt() == Constants.TWO_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();
@@ -250,7 +240,6 @@ public class HandPoker extends Hand {
 
 	public boolean isHighCard() {
 		boolean bisHighCard = false;
-		// TODO : Implement this method
 		if (this.getCRC().size() == 5) {
 			if (this.getCRC().get(0).getiCnt() == Constants.ONE_OF_A_KIND) {
 				HandScorePoker HSP = (HandScorePoker) this.getHS();

@@ -146,6 +146,57 @@ public class HandPokerTest {
 	}
 	
 	@Test
+	public void StraightTest2() {
+		System.out.println("Straight");
+		System.out.println("");
+		HandPoker hp = new HandPoker();
+		hp.AddCard(new Card(eSuit.CLUBS,eRank.ACE));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.KING));
+		hp.AddCard(new Card(eSuit.DIAMONDS,eRank.QUEEN));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.JACK));
+		hp.AddCard(new Card(eSuit.SPADES,eRank.TEN));
+		hp.ScoreHand();
+		
+		assertEquals(hp.isStraight(),true);
+		
+		System.out.println("");
+	}
+	
+	@Test
+	public void StraightTest3() {
+		System.out.println("Straight");
+		System.out.println("");
+		HandPoker hp = new HandPoker();
+		hp.AddCard(new Card(eSuit.CLUBS,eRank.ACE));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.TWO));
+		hp.AddCard(new Card(eSuit.DIAMONDS,eRank.THREE));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.FOUR));
+		hp.AddCard(new Card(eSuit.SPADES,eRank.FIVE));
+		hp.ScoreHand();
+		
+		assertEquals(hp.isStraight(),true);
+		
+		System.out.println("");
+	}
+	
+	@Test
+	public void StraightTest4() {
+		System.out.println("Straight");
+		System.out.println("");
+		HandPoker hp = new HandPoker();
+		hp.AddCard(new Card(eSuit.CLUBS,eRank.ACE));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.KING));
+		hp.AddCard(new Card(eSuit.DIAMONDS,eRank.QUEEN));
+		hp.AddCard(new Card(eSuit.HEARTS,eRank.JACK));
+		hp.AddCard(new Card(eSuit.SPADES,eRank.TWO));
+		hp.ScoreHand();
+		
+		assertEquals(hp.isStraight(),false);
+		
+		System.out.println("");
+	}
+	
+	@Test
 	public void ThreeOfAKindTest1() {
 		System.out.println("Three of a Kind");
 		System.out.println("");
